@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map with Pink Marker</title>
+    <!-- Include Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 800px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Map with Pink Point</h1>
+    <!-- Map container -->
+    <div id="map"></div>
+
+    <!-- Include Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([51.505, -0.09], 13); // Change these coordinates as needed
+
+        // Set up the map layer (you can change this to another provider if needed)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Create a custom pink marker
+        var pinkIcon = L.icon({
+            iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png', // Default marker image
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41],
+            iconUrl: 'https://www.flaticon.com/svg/static/icons/svg/1828/1828773.svg', // Pink marker image
+        });
+
+        // Add the pink marker to the map at the specified coordinates
+        L.marker([{{lat}}, {{lng}}], {icon: pinkIcon}).addTo(map)
+            .bindPopup('This is a pink point!')
+            .openPopup();
+    </script>
+</body>
+</html>
